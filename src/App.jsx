@@ -2,8 +2,20 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+
+// Images
 import Image1 from "./assets/Image1.jpg";
 import Image3 from "./assets/Image3.jpg";
+import Image4 from "./assets/Image4.jpg";
+import Image5 from "./assets/Image5.jpg";
+import Image6 from "./assets/Image6.jpg";
+import Image7 from "./assets/Image7.jpg";
+import Image8 from "./assets/Image8.jpg";
+import Image9 from "./assets/Image9.jpg";
+import Image11 from "./assets/Image11.jpg";
+import Image12 from "./assets/Image12.jpg";
+import Image13 from "./assets/Image13.jpg";
+import Image14 from "./assets/Image14.jpg";
 import Image15 from "./assets/Image15.jpg";
 import Logo from "./assets/Logo1.jpg";
 
@@ -16,23 +28,24 @@ function App() {
   });
   const [selectedRoom, setSelectedRoom] = useState("");
 
+  // Properties with multiple images (carousel)
   const properties = [
     {
       id: 1,
       name: "Deluxe Room",
-      img: Image1,
+      images: [Image1, Image4, Image5],
       desc: "Spacious deluxe room with modern amenities.",
     },
     {
       id: 2,
       name: "Shared Room",
-      img: Image3,
+      images: [Image3, Image5, Image6, Image8, Image9, Image12, Image13],
       desc: "Affordable shared accommodation for students.",
     },
     {
       id: 3,
       name: "Premium Suite",
-      img: Image15,
+      images: [Image15, Image7, Image11, Image14],
       desc: "Luxury suite with premium facilities.",
     },
   ];
@@ -62,8 +75,9 @@ Email: ${formData.email}`;
 
     const whatsappURL = `https://wa.me/918857009635?text=${message}`;
     window.open(whatsappURL, "_blank");
-    setShowForm(false); // close modal after submit
-    setFormData({ name: "", contact: "", email: "" }); // reset
+
+    setShowForm(false);
+    setFormData({ name: "", contact: "", email: "" });
     setSelectedRoom("");
   };
 
@@ -135,12 +149,53 @@ Email: ${formData.email}`;
             {properties.map((p) => (
               <div className="col-md-4" key={p.id}>
                 <div className="card shadow h-100">
-                  <img
-                    src={p.img}
-                    style={{ width: "360px", height: "350px" }}
-                    className="card-img-top"
-                    alt={p.name}
-                  />
+                  {/* Carousel for each property */}
+                  <div
+                    id={`carousel-${p.id}`}
+                    className="carousel slide"
+                    data-bs-ride="carousel"
+                    data-bs-interval="2000"
+                  >
+                    <div className="carousel-inner">
+                      {p.images.map((img, index) => (
+                        <div
+                          key={index}
+                          className={`carousel-item ${
+                            index === 0 ? "active" : ""
+                          }`}
+                        >
+                          <img
+                            src={img}
+                            className="d-block w-100"
+                            style={{
+                              height: "350px",
+                              objectFit: "cover",
+                              borderRadius: "6px",
+                            }}
+                            alt={`${p.name} ${index + 1}`}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    {/* Prev/Next controls */}
+                    <button
+                      className="carousel-control-prev"
+                      type="button"
+                      data-bs-target={`#carousel-${p.id}`}
+                      data-bs-slide="prev"
+                    >
+                      <span className="carousel-control-prev-icon"></span>
+                    </button>
+                    <button
+                      className="carousel-control-next"
+                      type="button"
+                      data-bs-target={`#carousel-${p.id}`}
+                      data-bs-slide="next"
+                    >
+                      <span className="carousel-control-next-icon"></span>
+                    </button>
+                  </div>
+
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text">{p.desc}</p>
