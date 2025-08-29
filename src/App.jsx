@@ -4,17 +4,37 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Images
+import Deluxe1 from "./assets/Deluxe1.jpg"
+import Deluxe2 from "./assets/Deluxe2.jpg"
+import Deluxe3 from "./assets/Deluxe3.jpg"
+import Deluxe4 from "./assets/Deluxe4.jpg"
+import Deluxe5 from "./assets/Deluxe5.jpg"
+import Deluxe6 from "./assets/Deluxe6.jpg"
+import Shared1 from "./assets/Shared1.jpg"
+import Shared2 from "./assets/Shared2.jpg"
+import Shared3 from "./assets/Shared3.jpg"
+import Shared4 from "./assets/Shared4.jpg"
+import Shared5 from "./assets/Shared5.jpg"
+import Shared6 from "./assets/Shared6.jpg"
+import Shared7 from "./assets/Shared7.jpg"
+import Shared8 from "./assets/Shared8.jpg"
+import Shared9 from "./assets/Shared9.jpg"
+import Shared10 from "./assets/Shared10.jpg"
+import Premium1 from "./assets/Premium1.jpg"
+import Premium2 from "./assets/Premium2.jpg"
+import Premium3 from "./assets/Premium3.jpg"
+import Premium4 from "./assets/Premium4.jpg"
+import Premium5 from "./assets/Premium5.jpg"
+import Premium6 from "./assets/Premium6.jpg"
+import Premium7 from "./assets/Premium7.jpg"
+import Premium8 from "./assets/Premium8.jpg"
 import Image1 from "./assets/Image1.jpg";
 import Image3 from "./assets/Image3.jpg";
 import Image4 from "./assets/Image4.jpg";
-import Image5 from "./assets/Image5.jpg";
 import Image6 from "./assets/Image6.jpg";
 import Image7 from "./assets/Image7.jpg";
-import Image8 from "./assets/Image8.jpg";
 import Image9 from "./assets/Image9.jpg";
 import Image11 from "./assets/Image11.jpg";
-import Image12 from "./assets/Image12.jpg";
-import Image13 from "./assets/Image13.jpg";
 import Image14 from "./assets/Image14.jpg";
 import Image15 from "./assets/Image15.jpg";
 import Logo from "./assets/Logo1.jpg";
@@ -32,20 +52,20 @@ function App() {
   const properties = [
     {
       id: 1,
-      name: "Deluxe Room",
-      images: [Image1, Image4, Image5],
+      name: "Deluxe Rooms",
+      images: [Deluxe2,Deluxe5,Deluxe4,Deluxe1,Deluxe3,Image1, Image4],
       desc: "Spacious deluxe room with modern amenities.",
     },
     {
       id: 2,
-      name: "Shared Room",
-      images: [Image3, Image5, Image6, Image8, Image9, Image12, Image13],
+      name: "Shared Rooms",
+      images: [Shared8,Shared10,Shared6,Shared4,Shared2,Shared1,Shared3,Shared5,Shared7,Shared9,Shared5,Image3, Image6, Image9],
       desc: "Affordable shared accommodation for students.",
     },
     {
       id: 3,
-      name: "Premium Suite",
-      images: [Image15, Image7, Image11, Image14],
+      name: "Premium Suites",
+      images: [Premium5,Premium1,Premium2,Premium6,Premium7,Premium4,Premium3,Image15, Image7, Image11, Image14],
       desc: "Luxury suite with premium facilities.",
     },
   ];
@@ -196,19 +216,26 @@ Email: ${formData.email}`;
                     </button>
                   </div>
 
-                  <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">{p.desc}</p>
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => {
-                        setSelectedRoom(p.name);
-                        setShowForm(true);
-                      }}
-                    >
-                      Book Now
-                    </button>
-                  </div>
+                 <div className="card shadow h-100 d-flex flex-column">
+  <div className="card-body d-flex flex-column text-center">
+    <h5 className="card-title">{p.name}</h5>
+    <p className="card-text">{p.desc}</p>
+
+    {/* push button to bottom */}
+    <div className="mt-auto">
+      <button
+        className="btn btn-warning"
+        onClick={() => {
+          setSelectedRoom(p.name);
+          setShowForm(true);
+        }}
+      >
+        Book Now
+      </button>
+    </div>
+  </div>
+</div>
+
                 </div>
               </div>
             ))}
